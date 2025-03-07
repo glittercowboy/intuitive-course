@@ -14,6 +14,7 @@
                     fontFamily: {
                         'sans': ['Inter', 'sans-serif'],
                         'display': ['GT Sectra', 'serif'],
+                        'canela': ['Canela Text', 'serif'],
                     },
                     colors: {
                         'primary': '#1a1a1a',
@@ -21,6 +22,8 @@
                         'muted': '#717171',
                         'cream': '#F8F7F4',
                         'warm-gray': '#E8E6E1',
+                        'highlight': '#C7B299',
+                        'deep-bg': '#0F0F0F',
                     },
                     maxWidth: {
                         'content': '800px',
@@ -30,6 +33,39 @@
         }
     </script>
     <style>
+        /* Canela Font Family */
+        @font-face {
+            font-family: 'Canela Text';
+            src: url('Canela Text Family/CanelaText-Regular-Trial.otf') format('opentype');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Canela Text';
+            src: url('Canela Text Family/CanelaText-Medium-Trial.otf') format('opentype');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Canela Text';
+            src: url('Canela Text Family/CanelaText-Bold-Trial.otf') format('opentype');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Canela Text';
+            src: url('Canela Text Family/CanelaText-RegularItalic-Trial.otf') format('opentype');
+            font-weight: 400;
+            font-style: italic;
+            font-display: swap;
+        }
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -40,9 +76,25 @@
                 transform: translateY(0);
             }
         }
+
+        @keyframes subtleFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
         .fade-in-up {
             animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
         }
+
+        .float-animation {
+            animation: subtleFloat 6s ease-in-out infinite;
+        }
+
         .fade-in-up[data-delay="1"] { animation-delay: 0.2s; }
         .fade-in-up[data-delay="2"] { animation-delay: 0.4s; }
         .fade-in-up[data-delay="3"] { animation-delay: 0.6s; }
@@ -62,21 +114,181 @@
 
         /* Add gradient accent */
         .gradient-accent {
-            background: linear-gradient(135deg, rgba(26, 26, 26, 0.03) 0%, rgba(26, 26, 26, 0) 100%);
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.05) 0%, rgba(26, 26, 26, 0) 100%);
+        }
+
+        /* Premium section styling */
+        .premium-section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .premium-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(199, 178, 153, 0.2), transparent);
+        }
+
+        /* Enhanced typography */
+        .heading-xl {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .heading-accent {
+            position: relative;
+            display: inline-block;
+        }
+
+        .heading-accent::after {
+            content: '';
+            position: absolute;
+            bottom: -0.2em;
+            left: 0;
+            width: 100%;
+            height: 0.1em;
+            background: rgba(199, 178, 153, 0.3);
+            transform: scaleX(0.8);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .heading-accent:hover::after {
+            transform: scaleX(1);
+        }
+
+        /* Card styling */
+        .premium-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .premium-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Testimonial styling */
+        .testimonial-card {
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -1rem;
+            left: -1rem;
+            font-size: 4rem;
+            font-family: Georgia, serif;
+            color: rgba(199, 178, 153, 0.2);
+            line-height: 1;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Button styling */
+        .premium-button {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .premium-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .premium-button:hover::before {
+            left: 100%;
+        }
+        
+        /* Hero section styling */
+        .hero-section {
+            background-image: url('https://images.unsplash.com/photo-1514922325787-819703cdb7a4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero-date {
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.2em;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-title {
+            font-family: 'Canela Text', serif;
+            font-weight: 700;
+            font-size: clamp(3rem, 10vw, 8rem);
+            line-height: 0.9;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero-artists {
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.1em;
+            font-size: 1rem;
+            margin-bottom: 3rem;
+        }
+        
+        .hero-button {
+            background-color: #F8B951;
+            color: #000;
+            font-weight: 600;
+            padding: 0.75rem 2rem;
+            border-radius: 0;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+        }
+        
+        .hero-button:hover {
+            background-color: #FFC972;
         }
     </style>
 </head>
 <body class="bg-cream text-primary antialiased">
     <div class="grain"></div>
+    
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content fade-in-up">
+            <div class="hero-date">4 JUNE - 20 AUGUST 2025</div>
+            <h1 class="hero-title">HEART<br>OF SOUND</h1>
+            <div class="hero-artists">TÂCHES | MOSE | KORA | YEMANJO | AGUAVA</div>
+            <a href="#apply" class="hero-button">APPLY NOW</a>
+        </div>
+    </section>
 
     <!-- Opening Experience -->
-    <header class="min-h-screen flex items-center justify-center px-4 gradient-accent">
+    <header class="min-h-screen flex items-center justify-center px-4 bg-deep-bg text-cream">
         <div class="max-w-content w-full space-y-12">
-            <h1 class="text-4xl md:text-6xl font-display leading-tight fade-in-up text-center max-w-content mx-auto">
-                A journey into the heart of music production.
+            <h1 class="heading-xl font-canela leading-tight fade-in-up text-center max-w-content mx-auto">
+                A journey into the <span class="heading-accent">heart of music</span> production.
             </h1>
-            <div class="space-y-8 text-lg text-accent fade-in-up mx-auto" data-delay="1">
-                <p>I'm not interested in teaching you to sound like everyone else, and I'm guessing you're not interested in learning that either. Over 12 weeks, we'll explore music as the mysterious, divine energy it truly is – something you collaborate with rather than simply create.</p>
+            <div class="space-y-8 text-lg text-cream/80 fade-in-up mx-auto" data-delay="1">
+                <p class="float-animation">I'm not interested in teaching you to sound like everyone else, and I'm guessing you're not interested in learning that either. Over 12 weeks, we'll explore music as the mysterious, divine energy it truly is – something you collaborate with rather than simply create.</p>
                 <p>Have you noticed that nearly every production tutorial teaches you what buttons to press, but almost none address why you're pressing them in the first place? What if creating distinctive music isn't about finding the right techniques, but about rediscovering the emotional truth that drew you to music initially?</p>
                 <p>This is an invitation to transformation, not information. I can't promise this course will be easy – questioning fundamental assumptions rarely is. But I can promise that if you're willing to approach music as a conversation rather than a conquest, you'll discover a creative freedom that technical knowledge alone can never provide.</p>
             </div>
@@ -84,15 +296,15 @@
     </header>
 
     <!-- About TÂCHES -->
-    <section class="py-24 px-4">
+    <section class="py-32 px-4 premium-section bg-cream">
         <div class="max-w-content mx-auto space-y-16">
-            <h2 class="text-3xl md:text-4xl font-display text-center">About TÂCHES</h2>
+            <h2 class="text-3xl md:text-4xl font-canela text-center heading-accent">About TÂCHES</h2>
             <div class="space-y-8 text-lg text-accent">
                 <p>I didn't arrive at my production philosophy through theoretical exploration. It emerged from years of frustration, questioning, and eventually breaking free from conventional production wisdom that simply wasn't serving my creative spirit.</p>
                 <p>Early in my career, I followed the standard path – technical obsession, reference track imitation, genre conventions. I released music that garnered industry approval but left me feeling strangely empty. Despite external validation, the music didn't feel authentic to me.</p>
                 <p>The transformation began when I started asking more fundamental questions: Why am I making music at all? What am I trying to express? These simple questions shifted my entire approach from technically-driven to emotionally-driven. Instead of making music to impress other producers, I began creating emotional experiences I wanted to share. This wasn't a rejection of technique, but a reorientation of its purpose – from an end in itself to a means of authentic expression.</p>
-                <div class="py-8 px-6 bg-gray-50 rounded-lg">
-                    <p class="text-xl font-display">Over 118 releases, collaborations with artists like ZHU and RÜFÜS DU SOL, and more than 71 million streams have come from maintaining an unwavering commitment to authentic expression.</p>
+                <div class="py-12 px-8 bg-deep-bg text-cream rounded-lg premium-card">
+                    <p class="text-xl font-canela">Over 118 releases, collaborations with artists like ZHU and RÜFÜS DU SOL, and more than 71 million streams have come from maintaining an unwavering commitment to authentic expression.</p>
                 </div>
                 <p>I've made decisions that industry insiders considered career suicide: releasing music that didn't fit neatly into marketable genres, turning down commercial opportunities that didn't align with my vision, prioritizing emotional resonance over algorithmic optimization. These choices were strategic investments in developing a distinctive voice in an industry drowning in sameness.</p>
                 <p>The results speak for themselves – not just in streaming numbers, but in building a sustainable career on my own terms. When you make music that authentically expresses your unique perspective, you stop competing with everyone else and start connecting with listeners who resonate with your specific voice.</p>
@@ -106,7 +318,7 @@
     <!-- The Current Reality -->
     <section class="py-24 px-4 bg-gray-50">
         <div class="max-w-content mx-auto space-y-16">
-            <h2 class="text-3xl font-display text-center">The Current Reality</h2>
+            <h2 class="text-3xl font-canela text-center">The Current Reality</h2>
             <div class="space-y-8 text-lg text-accent">
                 <p>There's something profoundly wrong with how we teach music production today. We've reduced a deeply emotional, almost spiritual art form to a series of technical procedures. "Use this EQ setting." "Follow this arrangement template." "Process your drums this way." What's missing from this approach is the entire reason we make music in the first place – to express something meaningful.</p>
 
@@ -119,7 +331,7 @@
                 <p>This pattern isn't accidental. The music production education industry profits from perpetuating the myth that you just need one more tutorial, one more plugin, one more course before you'll be "ready" to make the music you envision. But this readiness never arrives because the consumption itself becomes the activity, replacing actual music creation.</p>
 
                 <div class="py-8 px-6 bg-white rounded-lg">
-                    <p class="text-xl font-display">The harsh truth is that no amount of passive learning will transform you into the producer you want to be. Only finishing music – messy, imperfect, real music – can do that.</p>
+                    <p class="text-xl font-canela">The harsh truth is that no amount of passive learning will transform you into the producer you want to be. Only finishing music – messy, imperfect, real music – can do that.</p>
                 </div>
 
                 <p>The industry doesn't emphasize this because there's no profit in telling you that you already have everything you need to start making meaningful work.</p>
@@ -136,7 +348,7 @@
     <!-- A Different Perspective -->
     <section class="py-24 px-4">
         <div class="max-w-content mx-auto space-y-16">
-            <h2 class="text-3xl font-display text-center">A Different Perspective</h2>
+            <h2 class="text-3xl font-canela text-center">A Different Perspective</h2>
             <div class="space-y-8 text-lg text-accent">
                 <p>I've spent years unlearning the idea that I'm a creator of music. Instead, I've come to understand myself as a collaborator with music – a force that exists independently of my efforts to capture it. Think of music as a wild, enigmatic energy that's been resonating through the universe since long before DAWs, plugins, or even instruments existed.</p>
                 <p>My role isn't to invent this energy but to build a relationship with it. To listen carefully to what it wants to become, to steward it through technical decisions that honor its inherent nature. When I'm struggling with a track, it's rarely because I lack technical knowledge – it's usually because I'm trying to force the music to be something it doesn't want to be.</p>
@@ -155,12 +367,12 @@
     <!-- The Producer You Could Be -->
     <section class="py-24 px-4 bg-gray-50">
         <div class="max-w-content mx-auto space-y-16">
-            <h2 class="text-3xl font-display text-center">The Producer You Could Be</h2>
+            <h2 class="text-3xl font-canela text-center">The Producer You Could Be</h2>
             <div class="space-y-8 text-lg text-accent">
                 <p>Imagine approaching your DAW without the weight of expectation or self-judgment. No more anxiety about whether your music will measure up to some arbitrary standard. No more paralysis trying to perfectly recreate sounds from your reference tracks. Instead, you move through the creative process with curiosity and playfulness, embracing the unexpected turns as part of the conversation.</p>
                 <p>This shift creates a profound creative freedom. The endless overthinking that paralyzes so many producers – "Is this kick drum right?" "Does this arrangement follow the correct structure?" "Will other producers approve of this mix?" – gives way to more meaningful questions about emotional impact and authentic expression.</p>
                 <div class="py-8 px-6 bg-white rounded-lg">
-                    <p class="text-xl font-display">What would it feel like to finish tracks regularly not through discipline or willpower, but because you're so engaged in the conversation with the music that completion becomes a natural conclusion?</p>
+                    <p class="text-xl font-canela">What would it feel like to finish tracks regularly not through discipline or willpower, but because you're so engaged in the conversation with the music that completion becomes a natural conclusion?</p>
                 </div>
                 <p>What would change if you approached production with the same playful curiosity you had when you first discovered it, but now enhanced by technical knowledge that serves your expression rather than constrains it? This is the liberation available when you fundamentally reorient your relationship with the creative process.</p>
                 <p>Beneath the technical questions about which plugin to use or how to structure your track lies a more fundamental artistic question: What are you actually trying to express? When you clear away the technical noise and industry expectations, what sounds, emotions, and experiences are uniquely yours to share?</p>
@@ -174,107 +386,107 @@
     </section>
 
     <!-- Evidence of Transformation -->
-    <section class="py-24 px-4">
+    <section class="py-32 px-4 premium-section bg-deep-bg text-cream">
         <div class="max-w-content mx-auto space-y-16">
-            <h2 class="text-3xl font-display text-center">Evidence of Transformation</h2>
+            <h2 class="text-3xl md:text-4xl font-canela text-center heading-accent">Evidence of Transformation</h2>
             <div class="space-y-8">
-                <p class="text-lg text-accent text-center">The true measure of this approach isn't in how it sounds in theory, but in how it transforms real producers' relationships with music and creativity. These aren't testimonials about technical tricks learned or career advancement (though those often follow). They reflect profound shifts in how these artists experience the creative process itself.</p>
+                <p class="text-lg text-cream/80 text-center">The true measure of this approach isn't in how it sounds in theory, but in how it transforms real producers' relationships with music and creativity. These aren't testimonials about technical tricks learned or career advancement (though those often follow). They reflect profound shifts in how these artists experience the creative process itself.</p>
                 
-                <div class="space-y-16 mt-12">
+                <div class="space-y-16 mt-16">
                     <!-- Testimonial 1 -->
-                    <div class="space-y-6 text-center">
-                        <blockquote class="text-xl font-display italic">
+                    <div class="space-y-6 testimonial-card bg-cream/5 p-8 rounded-lg">
+                        <blockquote class="text-xl font-canela italic">
                             "TÂCHES taught me how to trust myself as a musician. Because of him, I now feel an incredible sense of freedom and creativity where before there was darkness. He is an amazing producer and a one of a kind teacher so if you get the chance to work with him... take it."
                         </blockquote>
-                        <div class="flex items-center justify-center space-x-4">
-                            <div class="w-12 h-12 bg-gray-200 rounded-full"></div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-highlight/20 rounded-full"></div>
                             <div>
                                 <p class="font-medium">Fur Skillman</p>
-                                <p class="text-muted">ELI & FUR</p>
+                                <p class="text-cream/60">ELI & FUR</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Testimonial 2 -->
-                    <div class="space-y-6 text-center">
-                        <blockquote class="text-xl font-display italic">
+                    <div class="space-y-6 testimonial-card bg-cream/5 p-8 rounded-lg">
+                        <blockquote class="text-xl font-canela italic">
                             "For me, working with TÂCHES feels like sitting with a fountain of infinite creativity, inspiration and momentum. His passion for music shines through as a conduit for feeling and an invitation for movement… I don't just leave his presence inspired to make music, I find myself more interested in the tender intricacies of the human experience, knowing everything I feel will become an ingredient in a delicious sonic soup."
                         </blockquote>
-                        <div class="flex items-center justify-center space-x-4">
-                            <div class="w-12 h-12 bg-gray-200 rounded-full"></div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-highlight/20 rounded-full"></div>
                             <div>
                                 <p class="font-medium">Michelle Tomlinson</p>
-                                <p class="text-muted">PIANIKA</p>
+                                <p class="text-cream/60">PIANIKA</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Testimonial 3 -->
-                    <div class="space-y-6 text-center">
-                        <blockquote class="text-xl font-display italic">
+                    <div class="space-y-6 testimonial-card bg-cream/5 p-8 rounded-lg">
+                        <blockquote class="text-xl font-canela italic">
                             "I discovered a deeper and more spiritual connection to music. He doesn't simply teach you how to make it – he introduces you to its very essence. TÂCHES showed me that it's about allowing the melodies and harmonies to flow through you naturally."
                         </blockquote>
-                        <div class="flex items-center justify-center space-x-4">
-                            <div class="w-12 h-12 bg-gray-200 rounded-full"></div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-highlight/20 rounded-full"></div>
                             <div>
                                 <p class="font-medium">Igor Volhonski</p>
-                                <p class="text-muted">HELLOVE</p>
+                                <p class="text-cream/60">HELLOVE</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Testimonial 4 -->
-                    <div class="space-y-6 text-center">
-                        <blockquote class="text-xl font-display italic">
+                    <div class="space-y-6 testimonial-card bg-cream/5 p-8 rounded-lg">
+                        <blockquote class="text-xl font-canela italic">
                             "Working with TÂCHES helped me reconnect with what matters after eight years of producing. His techniques are centered around delivering freedom - freedom from perfectionism and self-criticism. He shows you how to make music that genuinely comes from within. The breakthroughs have been amazing on every level."
                         </blockquote>
-                        <div class="flex items-center justify-center space-x-4">
-                            <div class="w-12 h-12 bg-gray-200 rounded-full"></div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-highlight/20 rounded-full"></div>
                             <div>
                                 <p class="font-medium">Ron Obadia</p>
-                                <p class="text-muted">Kabumi</p>
+                                <p class="text-cream/60">Kabumi</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Testimonial 5 -->
-                    <div class="space-y-6 text-center">
-                        <blockquote class="text-xl font-display italic">
+                    <div class="space-y-6 testimonial-card bg-cream/5 p-8 rounded-lg">
+                        <blockquote class="text-xl font-canela italic">
                             "Despite producing for 7+ years, I learned so much from TÂCHES. He encourages authentic, courageous growth and his thought-provoking discoveries and optimistic attitude are contagious. I'm proud to be his student and grateful for the depth added to my music."
                         </blockquote>
-                        <div class="flex items-center justify-center space-x-4">
-                            <div class="w-12 h-12 bg-gray-200 rounded-full"></div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-highlight/20 rounded-full"></div>
                             <div>
                                 <p class="font-medium">Jovanni Jimenez</p>
-                                <p class="text-muted">JOVI</p>
+                                <p class="text-cream/60">JOVI</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Testimonial 6 -->
-                    <div class="space-y-6 text-center">
-                        <blockquote class="text-xl font-display italic">
+                    <div class="space-y-6 testimonial-card bg-cream/5 p-8 rounded-lg">
+                        <blockquote class="text-xl font-canela italic">
                             "This gave me real clarity around how to approach drums, mixing and mastering and starting new projects without overthinking every small decision. TÂCHES is hilarious and his ability to relate to his students with funny anecdotes made each lesson a joy. Before this, I found excuses not to make music because 'I wasn't inspired.' Now, I feel empowered to create inspiration for myself."
                         </blockquote>
-                        <div class="flex items-center justify-center space-x-4">
-                            <div class="w-12 h-12 bg-gray-200 rounded-full"></div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-highlight/20 rounded-full"></div>
                             <div>
                                 <p class="font-medium">Samuel Rich</p>
-                                <p class="text-muted">Sam Rich</p>
+                                <p class="text-cream/60">Sam Rich</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Testimonial 7 -->
-                    <div class="space-y-6 text-center">
-                        <blockquote class="text-xl font-display italic">
+                    <div class="space-y-6 testimonial-card bg-cream/5 p-8 rounded-lg">
+                        <blockquote class="text-xl font-canela italic">
                             "What a brilliant experience! It really helped me have less judgement around my music and taught me to unify myself more with the process. I really harmonise with TÂCHES' unique way of connecting with music in an organic, ritualistic kind of way. Being part of a community together and learning as a community is just amazing. It really helped me level up and I'm much more able to enjoy making music and have become much less afraid to share it with others."
                         </blockquote>
-                        <div class="flex items-center justify-center space-x-4">
-                            <div class="w-12 h-12 bg-gray-200 rounded-full"></div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-highlight/20 rounded-full"></div>
                             <div>
                                 <p class="font-medium">Dylan Brooks</p>
-                                <p class="text-muted"></p>
+                                <p class="text-cream/60"></p>
                             </div>
                         </div>
                     </div>
@@ -286,7 +498,7 @@
     <!-- The Methodology -->
     <section class="py-24 px-4 bg-gray-50">
         <div class="max-w-content mx-auto space-y-16">
-            <h2 class="text-3xl font-display text-center">The Methodology</h2>
+            <h2 class="text-3xl font-canela text-center">The Methodology</h2>
             <div class="space-y-8 text-lg text-accent">
                 <p>Traditional production education treats learning as accumulation – the more techniques and information you gather, the better producer you'll become. My methodology inverts this approach. Instead of adding more, we begin by simplifying – stripping away unnecessary complexity to reconnect with the fundamental purpose of each production decision.</p>
                 <p>This simplification creates space for the most important aspect of my teaching approach: experiential learning. Rather than telling you what to think about production, I guide you through experiences that allow you to discover essential principles through direct engagement. These aren't abstract exercises but practical explorations with immediate application to your music.</p>
@@ -304,24 +516,24 @@
     <!-- The Journey -->
     <section class="py-24 px-4">
         <div class="max-w-content mx-auto space-y-16">
-            <h2 class="text-3xl font-display text-center">The Journey</h2>
+            <h2 class="text-3xl font-canela text-center">The Journey</h2>
             <div class="space-y-12 text-lg text-accent">
                 <!-- Placeholder for course structure -->
                 <div class="space-y-8">
                     <div class="p-8 border border-warm-gray rounded-lg hover:border-primary/20 transition-colors">
-                        <h3 class="text-xl font-display mb-4">Week 1-3: Foundation</h3>
+                        <h3 class="text-xl font-canela mb-4">Week 1-3: Foundation</h3>
                         <p class="text-muted">Placeholder content for the first phase of the journey. This section will detail the initial weeks of transformation.</p>
                     </div>
                     <div class="p-8 border border-warm-gray rounded-lg hover:border-primary/20 transition-colors">
-                        <h3 class="text-xl font-display mb-4">Week 4-6: Exploration</h3>
+                        <h3 class="text-xl font-canela mb-4">Week 4-6: Exploration</h3>
                         <p class="text-muted">Placeholder content for the middle phase of the journey. This section will outline the exploration and discovery period.</p>
                     </div>
                     <div class="p-8 border border-warm-gray rounded-lg hover:border-primary/20 transition-colors">
-                        <h3 class="text-xl font-display mb-4">Week 7-9: Integration</h3>
+                        <h3 class="text-xl font-canela mb-4">Week 7-9: Integration</h3>
                         <p class="text-muted">Placeholder content for the integration phase. This section will describe how concepts come together.</p>
                     </div>
                     <div class="p-8 border border-warm-gray rounded-lg hover:border-primary/20 transition-colors">
-                        <h3 class="text-xl font-display mb-4">Week 10-12: Mastery</h3>
+                        <h3 class="text-xl font-canela mb-4">Week 10-12: Mastery</h3>
                         <p class="text-muted">Placeholder content for the final phase. This section will detail the culmination of the journey.</p>
                     </div>
                 </div>
@@ -332,11 +544,11 @@
     <!-- Course Details & Investment -->
     <section class="py-24 px-4 bg-gray-50">
         <div class="max-w-content mx-auto space-y-16">
-            <h2 class="text-3xl font-display text-center">Course Details & Investment</h2>
+            <h2 class="text-3xl font-canela text-center">Course Details & Investment</h2>
             <div class="space-y-12">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div class="p-8 bg-white rounded-lg">
-                        <h3 class="text-xl font-display mb-6">Course Format</h3>
+                        <h3 class="text-xl font-canela mb-6">Course Format</h3>
                         <ul class="space-y-4 text-accent">
                             <li class="flex items-start">
                                 <span class="mr-3">•</span>
@@ -353,7 +565,7 @@
                         </ul>
                     </div>
                     <div class="p-8 bg-white rounded-lg">
-                        <h3 class="text-xl font-display mb-6">Investment</h3>
+                        <h3 class="text-xl font-canela mb-6">Investment</h3>
                         <ul class="space-y-4 text-accent">
                             <li class="flex items-start">
                                 <span class="mr-3">•</span>
@@ -377,19 +589,19 @@
     <!-- Application Process -->
     <section class="py-24 px-4">
         <div class="max-w-content mx-auto space-y-16">
-            <h2 class="text-3xl font-display text-center">Application Process</h2>
+            <h2 class="text-3xl font-canela text-center">Application Process</h2>
             <div class="space-y-12">
                 <div class="grid grid-cols-1 gap-8">
                     <div class="p-8 border border-warm-gray rounded-lg">
-                        <h3 class="text-xl font-display mb-4">Step 1: Initial Application</h3>
+                        <h3 class="text-xl font-canela mb-4">Step 1: Initial Application</h3>
                         <p class="text-accent">Placeholder content for application step one.</p>
                     </div>
                     <div class="p-8 border border-warm-gray rounded-lg">
-                        <h3 class="text-xl font-display mb-4">Step 2: Review Process</h3>
+                        <h3 class="text-xl font-canela mb-4">Step 2: Review Process</h3>
                         <p class="text-accent">Placeholder content for application step two.</p>
                     </div>
                     <div class="p-8 border border-warm-gray rounded-lg">
-                        <h3 class="text-xl font-display mb-4">Step 3: Personal Conversation</h3>
+                        <h3 class="text-xl font-canela mb-4">Step 3: Personal Conversation</h3>
                         <p class="text-accent">Placeholder content for application step three.</p>
                     </div>
                 </div>
@@ -400,11 +612,11 @@
     <!-- Final Philosophical Note -->
     <section class="py-24 px-4">
         <div class="max-w-content mx-auto space-y-16">
-            <h2 class="text-3xl font-display text-center">Final Philosophical Note</h2>
+            <h2 class="text-3xl font-canela text-center">Final Philosophical Note</h2>
             <div class="space-y-8 text-lg text-accent">
                 <p>The perspective I've shared throughout this page extends beyond individual production practice to a broader understanding of music itself. When we view music as a mysterious energy we collaborate with rather than control, we become part of something larger than our individual creative efforts.</p>
                 <div class="py-12 px-8 bg-gray-50 rounded-lg">
-                    <p class="text-xl font-display">Whether you choose to explore these ideas through this course or through your own path, I encourage you to consider what would change if you approached music not as something you make but as something you help emerge.</p>
+                    <p class="text-xl font-canela">Whether you choose to explore these ideas through this course or through your own path, I encourage you to consider what would change if you approached music not as something you make but as something you help emerge.</p>
                 </div>
                 <p>This view connects us to a lineage of music-makers across time and culture who understood sound as a bridge between worlds – concrete and abstract, visible and invisible, known and unknown. Your role in this lineage isn't to perfect technical execution but to develop your unique contribution to this ongoing conversation.</p>
                 <p>What might shift if you viewed each production decision not as imposing your will on sound but as responding to what the music itself is asking to become? This perspective doesn't diminish your importance as an artist; it elevates your role from technician to collaborator with something profound and enduring.</p>
@@ -412,13 +624,13 @@
         </div>
     </section>
 
-    <!-- Application Process -->
-    <section class="py-24 px-4 bg-gray-50">
+    <!-- Begin Your Journey -->
+    <section class="py-32 px-4 bg-deep-bg text-cream premium-section">
         <div class="max-w-content mx-auto space-y-16">
-            <h2 class="text-3xl font-display text-center">Begin Your Journey</h2>
+            <h2 class="text-3xl font-canela text-center heading-accent">Begin Your Journey</h2>
             <div class="space-y-8 text-center">
-                <p class="text-lg text-accent">If this perspective resonates with you, I invite you to apply for the next cohort. The application process is designed to ensure we're the right fit for each other and that you'll benefit from this unique approach to music production.</p>
-                <a href="#apply" class="inline-block px-8 py-4 bg-primary text-white rounded-lg hover:bg-opacity-90 transition-colors">
+                <p class="text-lg text-cream/80">If this perspective resonates with you, I invite you to apply for the next cohort. The application process is designed to ensure we're the right fit for each other and that you'll benefit from this unique approach to music production.</p>
+                <a href="#apply" class="inline-block px-8 py-4 bg-cream text-deep-bg rounded-lg hover:bg-opacity-90 transition-colors premium-button">
                     Apply for the Next Cohort
                 </a>
             </div>
@@ -426,10 +638,10 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-24 px-4 bg-warm-gray/30 border-t border-warm-gray">
+    <footer class="py-24 px-4 bg-cream border-t border-highlight/20">
         <div class="max-w-content mx-auto text-center space-y-12">
             <div class="space-y-4">
-                <h3 class="text-2xl font-display mb-2">TÂCHES</h3>
+                <h3 class="text-2xl font-canela mb-2">TÂCHES</h3>
                 <p class="text-muted">A transformative approach to music production.</p>
             </div>
             <nav class="flex flex-col items-center space-y-6">
