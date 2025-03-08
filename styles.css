@@ -280,6 +280,7 @@
 
 .hero-button:hover {
     background-color: #FFC972;
+    scale: 1.05;
 }
 
 /* Drop cap styling */
