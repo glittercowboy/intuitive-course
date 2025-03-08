@@ -42,6 +42,18 @@
     </script>
     <style>
         /* Additional styles for the waitlist page */
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero-section {
+            min-height: 100vh;
+            padding: 4rem 1rem;
+            box-sizing: border-box;
+        }
+        
         @media (max-width: 640px) {
             .hero-title {
                 font-size: 3.5rem;
@@ -49,13 +61,18 @@
             }
             
             .hero-content {
-                padding: 0 1rem;
+                padding: 1.5rem 1rem;
+            }
+            
+            .hero-section {
+                padding: 2rem 1rem;
             }
         }
         
         .form-container {
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             border: 1px solid rgba(199, 178, 153, 0.2);
+            margin-bottom: 2rem;
         }
         
         /* Ensure input text is visible */
@@ -86,12 +103,14 @@
         
         .hero-special-guests {
             font-family: 'Canela Text', serif;
-            font-weight: 400;
+            font-weight: 500;
             letter-spacing: 0.05em;
             font-size: 1.4rem;
-            margin-top: 0.75rem;
-            margin-bottom: 2rem;
             line-height: 1.4;
+            margin: 1.5rem 0 2rem 0;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
     </style>
 </head>
@@ -99,13 +118,13 @@
     <div class="grain"></div>
     
     <!-- Hero Section with Waitlist Form -->
-    <section class="hero-section">
-        <div class="hero-content fade-in-up">
+    <section class="hero-section flex items-center justify-center">
+        <div class="hero-content fade-in-up w-full">
             <div class="hero-presents">TÂCHES PRESENTS:</div>
             <h1 class="hero-title">HEART<br>OF SOUND</h1>
             
-            <div class="hero-date font-semibold">4 JUNE - 20 AUGUST 2025</div>
-            <div class="hero-special-guests">With Special Guests:<br>MOSE · KORA · YEMANJO</div>
+            <div class="hero-date font-semibold mt-3">4 JUNE - 20 AUGUST 2025</div>
+            <div class="hero-special-guests">WITH SPECIAL GUESTS:<br>MOSE | KORA | YEMANJO</div>
             
             <!-- Waitlist Form -->
             <div class="max-w-md mx-auto bg-white/95 p-8 sm:p-10 rounded-lg backdrop-blur-sm form-container">
@@ -114,13 +133,13 @@
                 
                 <form id="waitlistForm" class="space-y-6">
                     <div>
-                        <label for="fullName" class="block text-sm font-medium text-accent mb-2">Full Name</label>
-                        <input type="text" id="fullName" name="fullName" placeholder="Your name" required class="w-full px-4 py-3 border border-warm-gray rounded-md focus:outline-none focus:ring-2 focus:ring-highlight/50 text-primary bg-white">
+                        <!-- <label for="fullName" class="block text-sm font-medium text-accent mb-2">Full Name</label> -->
+                        <input type="text" id="fullName" name="fullName" placeholder="Full Name" required class="w-full px-4 py-3 border border-warm-gray rounded-md focus:outline-none focus:ring-2 focus:ring-highlight/50 text-primary bg-white">
                     </div>
                     
                     <div>
-                        <label for="emailAddress" class="block text-sm font-medium text-accent mb-2">Email Address</label>
-                        <input type="email" id="emailAddress" name="emailAddress" placeholder="your@email.com" required class="w-full px-4 py-3 border border-warm-gray rounded-md focus:outline-none focus:ring-2 focus:ring-highlight/50 text-primary bg-white">
+                        <!-- <label for="emailAddress" class="block text-sm font-medium text-accent mb-2">Email Address</label> -->
+                        <input type="email" id="emailAddress" name="emailAddress" placeholder="Email Address" required class="w-full px-4 py-3 border border-warm-gray rounded-md focus:outline-none focus:ring-2 focus:ring-highlight/50 text-primary bg-white">
                     </div>
                     
                     <button type="submit" class="w-full px-8 py-4 bg-primary text-cream rounded-md hover:bg-primary/90 transition-colors premium-button text-lg font-medium">
